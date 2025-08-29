@@ -12,6 +12,19 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
+/**
+ * This class represents a User.
+ *
+ * Users have an email and password used for login,
+ * as well as a First and Last Name provided when created.
+ *
+ * Users also have a list of Roles used for Authorization.
+ *
+ * Additionally, Users are associated with a list of Orders
+ * they have placed.
+ *
+ * @author Marie Schwartz
+ */
 @Entity
 @ToString
 @EqualsAndHashCode

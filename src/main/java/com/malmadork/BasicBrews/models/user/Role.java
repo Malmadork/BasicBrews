@@ -13,7 +13,6 @@ import java.io.Serializable;
  *
  * @author Marie Schwartz
  */
-
 @Entity
 @ToString
 @EqualsAndHashCode

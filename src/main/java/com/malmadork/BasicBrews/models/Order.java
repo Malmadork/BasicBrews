@@ -9,7 +9,18 @@ import java.io.Serializable;
 import java.time.LocalDateTime;
 import java.util.List;
 
-
+/**
+ * This class represents an Order.
+ *
+ * Order contains a generated Order Number
+ * and a status (Placed, Fulfilled, Cancelled)
+ *
+ * Order contains a List of Products
+ * (Joined using the ListItem object which contains
+ * a quantity associated with each product)
+ *
+ * @author Marie Schwartz
+ */
 @Entity
 @ToString
 @EqualsAndHashCode
@@ -120,12 +131,18 @@ public class Order extends DomainObject {
     /**
      * Sets the List of Products associated with an Order
      *
-     * @param orderProducts List of Products associated with an Order
+     * @param products List of Products associated with an Order
      */
-    public void setOrderProducts(List<ListItem> orderProducts) {
-        this.products = orderProducts;
+    public void setOrderProducts(List<ListItem> products) {
+        this.products = products;
     }
 
+    /**
+     * Adds a Product to an Order
+     *
+     * @param product Product to Add
+     * @param quantity Quantity to Add
+     */
     public void addProductToOrder(Product product, int quantity) {
         ListItem productEntry = new ListItem(product, quantity);
         this.products.add(productEntry);
