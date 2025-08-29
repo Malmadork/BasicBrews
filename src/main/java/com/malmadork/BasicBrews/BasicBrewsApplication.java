@@ -6,7 +6,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 /**
  * Entrypoint to the Basic Brews Application
  */
-@SpringBootApplication
+@SpringBootApplication ( scanBasePackages = { "com.malmadork.BasicBrews" } )
 public class BasicBrewsApplication {
 
     public static void main(String[] args) {

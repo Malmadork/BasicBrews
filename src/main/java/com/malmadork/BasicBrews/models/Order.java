@@ -147,4 +147,5 @@ public class Order extends DomainObject {
         ListItem productEntry = new ListItem(product, quantity);
         this.products.add(productEntry);
     }
+
 }

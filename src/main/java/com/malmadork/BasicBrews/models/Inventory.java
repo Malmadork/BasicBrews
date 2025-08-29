@@ -35,6 +35,13 @@ public class Inventory extends DomainObject {
     }
 
     /**
+     * Creates an inventory with a specified list.
+     */
+    public Inventory ( final List<ListItem> products ) {
+        this.products = products;
+    }
+
+    /**
      * Gets the ID of the entry in the DB
      *
      * @return ID
