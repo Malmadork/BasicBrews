@@ -1,7 +1,9 @@
 package com.malmadork.BasicBrews.models.user;
 
 import com.malmadork.BasicBrews.models.DomainObject;
+import com.malmadork.BasicBrews.models.ListItem;
 import com.malmadork.BasicBrews.models.Order;
+import com.malmadork.BasicBrews.models.Product;
 import jakarta.persistence.*;
 import lombok.EqualsAndHashCode;
 import lombok.ToString;
@@ -12,6 +14,19 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
+/**
+ * This class represents a User.
+ *
+ * Users have an email and password used for login,
+ * as well as a First and Last Name provided when created.
+ *
+ * Users also have a list of Roles used for Authorization.
+ *
+ * Additionally, Users are associated with a list of Orders
+ * they have placed.
+ *
+ * @author Marie Schwartz
+ */
 @Entity
 @ToString
 @EqualsAndHashCode
@@ -49,6 +64,11 @@ public class User extends DomainObject {
     @JoinTable ( name = "user_orders", joinColumns = @JoinColumn ( name = "user_id" ),
             inverseJoinColumns = @JoinColumn ( name = "order_id" ) )
     private List<Order> orders;
+
+    /** Items in the User's Cart */
+    @OneToMany
+    @JoinTable (inverseJoinColumns = @JoinColumn(name="listitem_id"))
+    List<ListItem> cart;
 
     /**
      * Setter for giving roles to the User
@@ -177,5 +197,68 @@ public class User extends DomainObject {
             }
         }
         this.orders.add( order );
+    }
+
+    /**
+     * Gets the User's First Name
+     *
+     * @return User First Name
+     * */
+    public String getFirstname() {
+        return firstname;
+    }
+
+    /**
+     * Sets the User's First Name
+     *
+     * @param firstname First Name to Set
+     */
+    public void setFirstname(String firstname) {
+        this.firstname = firstname;
+    }
+
+    /**
+     * Gets the User's Last Name
+     *
+     * @return User's Last Name
+     */
+    public String getLastname() {
+        return lastname;
+    }
+
+    /**
+     * Sets the User's Last Name
+     *
+     * @param lastname Last Name to Set
+     */
+    public void setLastname(String lastname) {
+        this.lastname = lastname;
+    }
+
+    /**
+     * Gets the ListItem (Products) in a User's Cart
+     *
+     * @return List of ListItem (Products)
+     */
+    public List<ListItem> getCart() {
+        return cart;
+    }
+
+    /**
+     * Adds a product to a User's Cart
+     *
+     * @param product Product to add
+     * @param quantity Quantity of Product
+     */
+    public void addToCart(Product product, int quantity) {
+        ListItem productEntry = new ListItem(product, quantity);
+        this.cart.add(productEntry);
+    }
+
+    /**
+     * Clears a User's Cart
+     */
+    public void clearCart() {
+        this.cart.clear();
     }
 }

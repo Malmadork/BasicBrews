@@ -1,0 +1,20 @@
+spring:
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://localhost:3306/BasicBrews?createDatabaseIfNotExist=true&autoReconnect=true&allowPublicKeyRetrieval=true&serverTimezone=UTC
+    username: root
+    password: ### Password ###
+    hikari:
+      idleTimeout: 500
+      connectionTimeout: 15000
+  jpa:
+    hibernate:
+      ddl-auto: update
+      dialect: org.hibernate.dialect.MySQL5Dialect
+    show-sql: true
+  session:
+    jdbc:
+      initialize-schema: always
+
+server:
+  port: 8080

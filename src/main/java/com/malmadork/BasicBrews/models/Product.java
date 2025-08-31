@@ -7,6 +7,13 @@ import lombok.ToString;
 
 import java.io.Serializable;
 
+/**
+ * This class represents a Product.
+ *
+ * Products have a name, price, and description,
+ *
+ * @author Marie Schwartz
+ */
 @Entity
 @ToString
 @EqualsAndHashCode
@@ -30,11 +37,6 @@ public class Product extends DomainObject {
     /** Description of a product */
     @Column
     private String description;
-
-    /** Inventory for a product */
-    @Column
-    @Min( 0 )
-    private int inventory;
 
     /** Gets the Product's ID */
     @Override
@@ -79,14 +81,6 @@ public class Product extends DomainObject {
         this.description = description;
     }
 
-    /**
-     * Sets the inventory of the Product
-     *
-     * @param inventory Inventory of the Product
-     */
-    public void setInventory( final int inventory ) {
-        this.inventory = inventory;
-    }
 
     /** Gets the Product's Name */
     public String getName() {
@@ -103,8 +97,4 @@ public class Product extends DomainObject {
         return description;
     }
 
-    /** Gets the Product's Inventory */
-    public int getInventory() {
-        return inventory;
-    }
 }

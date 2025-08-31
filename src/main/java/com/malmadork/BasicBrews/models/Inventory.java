@@ -5,6 +5,15 @@ import jakarta.persistence.*;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * This class represents product Inventory.
+ *
+ * Inventory contains a List of Products
+ * (Joined using the ListItem object which contains
+ * a quantity associated with each product)
+ *
+ * @author Marie Schwartz
+ */
 @Entity
 public class Inventory extends DomainObject {
 
@@ -23,6 +32,13 @@ public class Inventory extends DomainObject {
      */
     public Inventory () {
         this.products = new ArrayList<ListItem>();
+    }
+
+    /**
+     * Creates an inventory with a specified list.
+     */
+    public Inventory ( final List<ListItem> products ) {
+        this.products = products;
     }
 
     /**

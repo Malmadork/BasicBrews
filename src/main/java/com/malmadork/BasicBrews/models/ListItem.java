@@ -5,7 +5,13 @@ import jakarta.persistence.*;
 import java.io.Serializable;
 
 /**
+ * This class represents a Product within
+ * an Order or Inventory List.
  *
+ * This entity is associated with a Product and
+ * contains a value for quantity of that product.
+ *
+ * @author Marie Schwartz
  */
 @Entity
 public class ListItem extends DomainObject {
@@ -16,7 +22,9 @@ public class ListItem extends DomainObject {
     @Column (unique = true)
     Long id;
 
-
+    /**
+     * Associated Product
+     */
     @ManyToOne
     @JoinColumn( name = "product_id" )
     Product product;
@@ -26,6 +34,12 @@ public class ListItem extends DomainObject {
     @Column
     int quantity;
 
+    /**
+     * Constructor for ListItem
+     *
+     * @param product Associated Product
+     * @param quantity Quantity of Product
+     */
     public ListItem(Product product, int quantity) {
         this.product = product;
         this.quantity = quantity;
