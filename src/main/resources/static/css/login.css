@@ -1,0 +1,315 @@
+/** Root Styles */
+:root {
+    --main-background-color-1: rgb(200, 235, 185);
+    --main-background-color-2: rgb(255, 235, 225);
+    --light-color-1: rgb(75, 78, 75);
+    --light-color-2: rgba(75, 78, 75, .2);
+    --login-button-color: rgb(55, 125, 50);
+    --font-link-default: rgb(65, 135, 65);
+    --font-link-visited: rgb(65, 165, 135);
+    --invalid-color: rgb(220, 70, 70);
+    /*font-size: 30%;*/
+}
+
+/** Moranga Fonts */
+
+@font-face {
+    font-family: "Moranga Thick";
+    src: url("../fonts/Moranga Black.woff");
+}
+
+@font-face {
+    font-family: "Moranga Thick Italic";
+    src: url("../fonts/Moranga Black It.woff");
+}
+
+@font-face {
+    font-family: "Moranga Bold";
+    src: url("../fonts/Moranga Bold.woff");
+}
+
+@font-face {
+    font-family: "Moranga Bold It";
+    src: url("../fonts/Moranga Bold It.woff");
+}
+
+@font-face {
+    font-family: "Moranga Regular";
+    src: url("../fonts/Moranga Regular.woff");
+}
+
+@font-face {
+    font-family: "Moranga Medium";
+    src: url("../fonts/Moranga Medium.woff");
+}
+
+/** Content Styling */
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    height: 100vh;
+    width: 100vw;
+    margin: 0;
+
+    font-family: "Figtree", sans-serif;
+    font-optical-sizing: auto;
+    font-style: normal;
+}
+
+main {
+    width: 100%;
+    min-height: 100vh;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+
+    padding: 15px;
+    background: -webkit-linear-gradient(-135deg, var(--main-background-color-1), var(--main-background-color-2));
+    background: -o-linear-gradient(-135deg, var(--main-background-color-1), var(--main-background-color-2));
+    background: -moz-linear-gradient(-135deg, var(--main-background-color-1), var(--main-background-color-2));
+    background: linear-gradient(-135deg, var(--main-background-color-1), var(--main-background-color-2));
+    background-size: cover;
+    -webkit-background-size:cover;
+    -moz-background-size:cover;
+    -o-background-size:cover;
+}
+
+a {
+    color: var(--font-link-default);
+    font-weight: bold;
+}
+
+a:hover, button:hover, input[type="submit"]:hover {
+    cursor: pointer;
+}
+
+a:focus {
+    color: var(--font-link-default);
+    outline: none;
+}
+
+a:visited {
+    color: var(--font-link-visited);
+}
+
+h1 {
+    font-weight: 600;
+    font-size: 1.45rem;
+}
+
+h2 {
+    font-weight: 500;
+    font-size: 1rem
+}
+
+h3, h4, p, input, label {
+    font-weight: 400;
+    font-size: .75rem;
+}
+
+header {
+    grid-area: header;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: end;
+    gap: 2%;
+    padding: 1% 9% 1% 9%;
+}
+
+header h1 {
+    font-family: "Moranga Bold", "Figtree", sans-serif;
+    text-align: center;
+    margin: 0;
+}
+
+header h3 {
+    color: var(--light-color-1);
+    text-align: center;
+}
+
+/** Login Form */
+.wrapper {
+    width: 960px;
+    background: white;
+    border-radius: 10px;
+    overflow: hidden;
+    justify-content: center;
+    align-items: center;
+    padding: 2% 2% 2% 2%;
+    box-sizing: border-box;
+    box-shadow: 0 0 3px 2px var(--light-color-2);
+    display: flex;
+}
+
+.form-wrapper {
+    padding: 3% 1%;
+    display:flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+}
+
+
+.form {
+    padding: 0 5%;
+}
+
+form {
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    justify-content: center;
+}
+
+.form-input {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.form-input label {
+    margin-left: 12px;
+}
+
+.form-input input {
+    font-family: "Figtree", sans-serif;
+    font-optical-sizing: auto;
+    font-style: normal;
+    padding: 5% 5%;
+    width: 100%;
+    box-sizing: border-box;
+    border: 1px solid var(--light-color-1);
+    border-radius: 75px;
+    margin: 2% 0;
+}
+
+.form-actions-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 3%;
+}
+
+.checkbox #remember {
+    height: .7rem;
+    width: .7rem;
+}
+
+.divider {
+    width: 100%;
+}
+
+.surrounded-text {
+    width: 100%;
+    overflow: hidden;
+    text-align: center;
+}
+
+.surrounded-text:before,
+.surrounded-text::after {
+    background-color: #000;
+    content: "";
+    display: inline-block;
+    height: 1px;
+    position: relative;
+    vertical-align: middle;
+    width: 25%;
+}
+
+.surrounded-text::before {
+    right: 0.5em;
+    margin-left: -50%;
+}
+
+.surrounded-text::after {
+    left: 0.5em;
+    margin-right: -50%;
+}
+
+.submit-button {
+    padding: 5% 3%;
+    border-radius: 75px;
+    background-color: var(--login-button-color);
+    color: white;
+    font-weight: 600;
+    font-size: .85rem;
+    font-family: 'Figtree', sans-serif;
+}
+
+#alt-login, #alt-register {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    justify-content: flex-start;
+    align-items: center;
+    padding: 0 5%;
+}
+
+.alt-login-button {
+    position: relative;
+    padding: 5% 3%;
+    border-radius: 75px;
+    background-color: white;
+    border: 1px solid var(--light-color-1);
+    color: black;
+    font-weight: 600;
+    font-size: .85rem;
+    font-family: 'Figtree', sans-serif;
+    width: 100%;
+}
+
+.alt-login-button-logo {
+    position: absolute;
+    height: 1.1rem;
+    left: 5%;
+}
+
+/** Thymeleaf conditionals */
+.invalid-input {
+    color: var(--invalid-color);
+}
+
+.logout {
+    color: var(--font-link-default);
+}
+
+/** Responsive (@media) Styles */
+@media (max-width: 992px) {
+    .wrapper {
+        padding: 2% 2% 1% 2%;
+    }
+
+    form {
+        gap: 8px;
+    }
+}
+
+@media (min-width: 993px) and (max-height: 562px) {
+    form {
+        gap: 5px;
+    }
+
+    .form-wrapper {
+        padding: 1%;
+    }
+}
+
+@media (max-width: 576px) {
+    .wrapper {
+        padding: 1.5% 1.5% 1% 1.5%;
+    }
+
+    form {
+        gap: 5px;
+    }
+}

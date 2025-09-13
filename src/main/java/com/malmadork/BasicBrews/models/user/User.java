@@ -6,6 +6,7 @@ import com.malmadork.BasicBrews.models.Order;
 import com.malmadork.BasicBrews.models.Product;
 import jakarta.persistence.*;
 import lombok.EqualsAndHashCode;
+import lombok.Getter;
 import lombok.ToString;
 
 import java.io.Serializable;
@@ -29,7 +30,7 @@ import java.util.Set;
  */
 @Entity
 @ToString
-@EqualsAndHashCode
+@EqualsAndHashCode(callSuper = false)
 public class User extends DomainObject {
 
     /** Unique, automatically generated id. */
@@ -38,31 +39,47 @@ public class User extends DomainObject {
     @Column (unique = true)
     private Long id;
 
-    /** Unique email for a user account. */
+    /** Unique email for a user account.
+     * -- GETTER --
+     *  Gets the email of the User account.
+     *
+     * @return The email of the User.
+     */
+    @Getter
     @Column ( unique = true )
+//    @NotEmpty(message = "Email cannot be empty.")
     private String email;
 
-    /** The password is salted and hashed before storage. */
+    /** The password is salted and hashed before storage.
+     * -- GETTER --
+     *  Returns the password of the User account.
+     *
+     * @return The password of the User account.
+     */
+//    @NotEmpty(message = "Password cannot be empty.")
+    @Getter
     private String password;
 
     /** User's first name */
     @Column
+    @Getter
     private String firstname;
 
     /** User's last name */
     @Column
+    @Getter
     private String lastname;
 
     /** Collection of roles that designate a User's authorities */
-    @ManyToMany( cascade = CascadeType.ALL, fetch = FetchType.EAGER )
-    @JoinTable ( name = "user_roles", joinColumns = @JoinColumn ( name = "user_id" ),
-            inverseJoinColumns = @JoinColumn ( name = "roles_id" ) )
+    @ManyToMany(fetch = FetchType.EAGER, cascade = {CascadeType.DETACH, CascadeType.MERGE, CascadeType.PERSIST, CascadeType.REFRESH})
+    @JoinTable ( name = "user_roles", joinColumns = @JoinColumn ( name = "user_id"),
+            inverseJoinColumns = @JoinColumn ( name = "roles_id") )
     private Set<Role> roles;
 
     /** Orders the User has placed */
-    @ManyToMany( cascade = CascadeType.ALL, fetch = FetchType.EAGER )
-    @JoinTable ( name = "user_orders", joinColumns = @JoinColumn ( name = "user_id" ),
-            inverseJoinColumns = @JoinColumn ( name = "order_id" ) )
+    @ManyToMany(fetch = FetchType.EAGER, cascade = {CascadeType.DETACH, CascadeType.MERGE, CascadeType.PERSIST, CascadeType.REFRESH})
+    @JoinTable ( name = "user_orders", joinColumns = @JoinColumn ( name = "user_id"),
+            inverseJoinColumns = @JoinColumn ( name = "order_id") )
     private List<Order> orders;
 
     /** Items in the User's Cart */
@@ -103,33 +120,15 @@ public class User extends DomainObject {
     }
 
     /**
-     * Gets the email of the User account.
-     *
-     * @return The email of the User.
-     */
-    public String getEmail () {
-        return email;
-    }
-
-    /**
      * Sets the email of the User account.
      *
      * @param email String The email of the User.
      */
     public void setEmail ( final String email ) {
-        if ( email == null || email.length() == 0 ) {
+        if ( email == null || email.isEmpty()) {
             throw new IllegalArgumentException( "Invalid user name." );
         }
         this.email = email;
-    }
-
-    /**
-     * Returns the password of the User account.
-     *
-     * @return The password of the User account.
-     */
-    public String getPassword () {
-        return password;
     }
 
     /**
@@ -138,7 +137,7 @@ public class User extends DomainObject {
      * @param password String The password of the User account.
      */
     public void setPassword ( final String password ) {
-        if ( password == null || password.length() == 0 ) {
+        if ( password == null || password.isEmpty()) {
             throw new IllegalArgumentException( "Invalid password." );
         }
         this.password = password;
@@ -200,15 +199,6 @@ public class User extends DomainObject {
     }
 
     /**
-     * Gets the User's First Name
-     *
-     * @return User First Name
-     * */
-    public String getFirstname() {
-        return firstname;
-    }
-
-    /**
      * Sets the User's First Name
      *
      * @param firstname First Name to Set
@@ -217,14 +207,6 @@ public class User extends DomainObject {
         this.firstname = firstname;
     }
 
-    /**
-     * Gets the User's Last Name
-     *
-     * @return User's Last Name
-     */
-    public String getLastname() {
-        return lastname;
-    }
 
     /**
      * Sets the User's Last Name
